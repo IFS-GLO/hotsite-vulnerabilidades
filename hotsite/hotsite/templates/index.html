@@ -1,5 +1,101 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
+{% endblock %}
 
 {% block content %}
-Essa bagaça funciona!
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="main-title">Vulnerabilidades</h1>
+                <div class="menu-content">
+                    <ul>
+                        <li><span class="gtm_vulnerabilities_catalog active">Catalog</span></li>
+                        <li><a class="gtm_vulnerabilities_vendor" href="/en/vendor/">Vendors</a></li>
+                        <li><a class="gtm_vulnerabilities_products" href="/en/product/">Products</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table id="informations" class="table table-striped table-bordered" cellspacing="0"
+                               width="100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Produtos</th>
+                                <th>Data</th>
+                                <th>Versão</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Produtos</th>
+                                <th>Data</th>
+                                <th>Versão</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'datatables.net/js/jquery.dataTables.js' %}"></script>
+
+    <script>
+        $(function () {
+            $('#informations').DataTable({
+                paging: false,
+                searching: false,
+                language: {
+                    processing: "Processando...",
+                    search: "Pesquisar",
+                    lengthMenu: "_MENU_ resultados por página",
+                    info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    infoEmpty: "Mostrando 0 até 0 de 0 registros",
+                    infoFiltered: "(Filtrados de _MAX_ registros)",
+                    infoPostFix: "",
+                    loadingRecords: "Carregando...",
+                    zeroRecords: "Nenhum registro encontrado",
+                    emptyTable: "Nenhum registro encontrado",
+                    paginate: {
+                        first: "Próximo",
+                        previous: "Anterior",
+                        next: "Próximo",
+                        last: "Último"
+                    },
+                    aria: {
+                        sortAscending: ": Ordenar colunas de forma ascendente",
+                        sortDescending: ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}
