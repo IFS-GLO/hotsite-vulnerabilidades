@@ -1,0 +1,20 @@
+{
+  "name": "vulnerabilidades",
+  "version": "1.0.0",
+  "description": "Vulnerabilidades das aplicações/servidores do Instituto Federal de Sergipe, apresentação os patchs para as devidas correções.",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://unanimad@bitbucket.org/unanimad/ifs-vulnerabilidades.git"
+  },
+  "author": "Raphael F.",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/unanimad/ifs-vulnerabilidades#readme"
+}
