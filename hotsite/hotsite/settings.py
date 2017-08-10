@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'hotsite.core',
+    'hotsite.catalog',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +73,6 @@ WSGI_APPLICATION = 'hotsite.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -84,12 +84,7 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-
-
 # Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -103,7 +98,10 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'node_modules')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'node_modules'),
+    os.path.join(BASE_DIR, 'hotsite', 'static'),
+]
+
 STATIC_URL = '/static/'
