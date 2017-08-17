@@ -7,8 +7,11 @@
     "bootstrap": "^4.0.0-alpha.6",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^1.10.15",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
-    "tether": "^1.4.0"
+    "pace-js": "^1.0.2",
+    "tether": "^1.4.0",
+    "toastr": "^2.1.2"
   },
   "devDependencies": {},
   "scripts": {

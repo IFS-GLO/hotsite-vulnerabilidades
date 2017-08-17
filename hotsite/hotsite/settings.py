@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'hotsite.core',
+    'hotsite.panel',
     'hotsite.catalog',
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'hotsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'hotsite', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'hotsite', 'core', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,7 +102,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'node_modules'),
-    os.path.join(BASE_DIR, 'hotsite', 'static'),
+    os.path.join(BASE_DIR, 'hotsite', 'core', 'static'),
 ]
 
 STATIC_URL = '/static/'
