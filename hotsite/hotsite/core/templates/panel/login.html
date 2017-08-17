@@ -1,0 +1,95 @@
+{% load static %}
+
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Acesso - Portal de Vulnerabilidades | IFS - Instituto Federal de Sergipe</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'toastr/build/toastr.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body class="app flex-row align-items-center">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-group mb-0">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <img class="img-fluid" src="{% static 'img/logo.png' %}" />
+                        <hr />
+                        <h1>Acesso</h1>
+                        <p class="text-muted">Preencha seus dados</p>
+
+                        <form id="login-form" action="." method="POST" novalidate="">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <input type="text" class="form-control" placeholder="Usuário" name="username">
+                            </div>
+                            <div class="input-group mb-4">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" placeholder="Senha" name="password">
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success px-4">Acessar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card text-white bg-success py-5 d-md-down-none" style="width:44%">
+                    <div class="card-body text-center">
+                        <div>
+                            <h2>Dúvidas?</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap and necessary plugins -->
+
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'tether/dist/js/tether.min.js' %}"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'toastr/build/toastr.min.js' %}"></script>
+
+<script>
+    $(function () {
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    toastr.success('{{ message }}');
+                {% else %}
+                    toastr.error('{{ message }}');
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    });
+</script>
+
+</body>
+
+</html>

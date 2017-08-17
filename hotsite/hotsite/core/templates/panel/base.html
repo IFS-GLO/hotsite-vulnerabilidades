@@ -1,0 +1,161 @@
+{% load static %}
+<!--
+ * CoreUI - Open Source Bootstrap Admin Template
+ * @version v1.0.0-alpha.6
+ * @link http://coreui.io
+ * Copyright (c) 2017 creativeLabs Łukasz Holeczek
+ * @license MIT
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="{{ head_title }} - Portal de Vulnerabilidades | IFS - Instituto Federal de Sergipe">
+    <meta name="author" content="Raphael Fontes - CTI Glória">
+    <meta name="keyword"
+          content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>{{ head_title }} - Portal de Vulnerabilidades | IFS - Instituto Federal de Sergipe</title>
+
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+
+    <!-- Main styles for this application -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'toastr/build/toastr.min.css' %}">
+</head>
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<header class="app-header navbar">
+    <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">☰</button>
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler sidebar-minimizer d-md-down-none" type="button">☰</button>
+    <ul class="nav navbar-nav ml-auto" style="margin-right: 10px;">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
+               aria-haspopup="true" aria-expanded="false">
+                <span class="d-md-down-none">{{ user.first_name }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header text-center">
+                    <strong>Account</strong>
+                </div>
+                <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span
+                        class="badge badge-info">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span
+                        class="badge badge-success">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span
+                        class="badge badge-danger">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span
+                        class="badge badge-warning">42</span></a>
+                <div class="dropdown-header text-center">
+                    <strong>Settings</strong>
+                </div>
+                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span
+                        class="badge badge-default">42</span></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+                <div class="divider"></div>
+                <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
+                <a class="dropdown-item" href="{% url 'panel:logout' %}"><i class="fa fa-lock"></i> Sair</a>
+            </div>
+        </li>
+    </ul>
+
+</header>
+
+<div class="app-body">
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fa fa-tachometer"></i> Painel</a>
+                </li>
+                <li class="nav-title">
+                    Vulnerabilidades
+                </li>
+                <li class="nav-item open">
+                    <a class="nav-link" href="#"><i class="fa fa-bug"></i> Catálogo</a>
+                </li>
+                <li class="nav-title">
+                    Catálogo de Software
+                </li>
+                <li class="nav-item open">
+                    <a class="nav-link" href="#"><i class="fa fa-institution"></i> Fornecedores</a>
+                </li>
+                <li class="nav-item open">
+                    <a class="nav-link" href="#"><i class="fa fa-bookmark"></i> Categorias</a>
+                </li>
+                <li class="nav-item open">
+                    <a class="nav-link" href="#"><i class="fa fa-database"></i> Softwares</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <main class="main">
+
+        <div class="container-fluid">
+
+            <div class="animated fadeIn">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+        </div>
+        <!-- /.conainer-fluid -->
+    </main>
+
+    <aside class="aside-menu">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab"><i class="icon-list"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><i class="icon-speech"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab"><i class="icon-settings"></i></a>
+            </li>
+        </ul>
+    </aside>
+
+</div>
+
+<footer class="app-footer">
+    <a href="http://www.ifs.edu.br">IFS - Instituto Federal de Sergipe</a>.
+    <span class="float-right"><a href="http://gloria.ifs.edu.br">CTI - Glória</a>
+        </span>
+</footer>
+
+<!-- Bootstrap and necessary plugins -->
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'pace-js/pace.min.js' %}"></script>
+<script src="{% static 'toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+
+<script>
+    $(function () {
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    toastr.success('{{ message }}');
+                {% else %}
+                    toastr.error('{{ message }}');
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    });
+</script>
+
+{% block custom_js %} {% endblock %}
+
+</body>
+
+</html>

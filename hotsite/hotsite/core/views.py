@@ -2,6 +2,21 @@ from django.shortcuts import render
 
 
 def index(request):
-    template_name = 'index.html'
+    template_name = 'hotsite/index.html'
 
-    return render(request, template_name)
+    tab = request.GET.get('tab', '')
+
+    if tab == '':
+        title = 'Vulnerabilidades'
+
+    elif tab == 'provider':
+        title = 'Fornecedores'
+
+    elif tab == 'software':
+        title = 'Produtos'
+
+    context = {
+        'title': title
+    }
+
+    return render(request, template_name, context)
