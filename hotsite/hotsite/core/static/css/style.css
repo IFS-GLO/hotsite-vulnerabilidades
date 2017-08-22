@@ -12591,3 +12591,7 @@ hr.transparent {
 *[dir="rtl"].callout-dark {
     border-right-color: #29363d;
 }
+
+.sidebar .nav .nav-item .nav-link.active i, .sidebar .nav .nav-item .navbar .active.dropdown-toggle i, .navbar .sidebar .nav .nav-item .active.dropdown-toggle i {
+    color: #379457 !important
+}

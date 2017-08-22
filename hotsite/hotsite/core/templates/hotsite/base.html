@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Vulnerabilidades - Instituto Federal de Sergipe</title>
+    <title>{{ head_title }} Vulnerabilidades — Instituto Federal de Sergipe</title>
     <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/hotsite.css' %}">
@@ -26,15 +26,29 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Vulnerabilidades</a>
+                <a class="nav-link" href="{% url 'core:index' %}">Vulnerabilidades</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Catálogo  de Software</a>
+                <a class="nav-link" href="#">Catálogo de Software</a>
             </li>
         </ul>
     </div>
 </nav>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="main-title">{{ title }}</h1>
+            <div class="menu-content">
+                <ul>
+                    <li><a id="nav_all" href="{% url 'core:index' %}">Todos</a></li>
+                    <li><a id="nav_provider" href="{% url 'core:providers' %}">Fornecedores</a></li>
+                    <li><a id="nav_software" href="{% url 'core:products' %}">Produtos</a></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 {% block content %}{% endblock %}
 
 <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
