@@ -248,3 +248,64 @@ def vulnerability(request, pk):
     }
 
     return render(request, template_name, context)
+
+
+def licenses(request):
+    template_name = 'panel/list.html'
+
+    instances = License.objects.all()
+
+    context = {
+        'head_title': 'Licenças',
+        'instances': instances,
+        'add_url': 'panel:catalog:add_license',
+        'edit_url': 'panel:catalog:license'
+    }
+
+    return render(request, template_name, context)
+
+
+def add_license(request):
+    template_name = 'panel/add.html'
+
+    form = LicenseForm(auto_id=False)
+
+    if request.method == 'POST':
+        form = LicenseForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, 'Cadastrado com sucesso.')
+
+    context = {
+        'head_title': 'Nova Licença',
+        'title': 'Licença',
+        'form': form
+    }
+
+    return render(request, template_name, context)
+
+
+def license(request, pk):
+    template_name = 'panel/add.html'
+
+    instance = License.objects.get(pk=pk)
+
+    form = LicenseForm(auto_id=False, instance=instance)
+
+    if request.method == 'POST':
+        form = LicenseForm(request.POST or None, instance=instance)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, 'Atualizado com sucesso.')
+
+    context = {
+        'head_title': instance.name,
+        'title': instance.name,
+        'form': form
+    }
+
+    return render(request, template_name, context)

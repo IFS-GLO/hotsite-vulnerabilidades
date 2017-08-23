@@ -32,7 +32,7 @@ class CategoryForm(forms.ModelForm):
 class SoftwareForm(forms.ModelForm):
     class Meta:
         model = Software
-        fields = ['name', 'process_number', 'version_stable', 'licenses_number', 'license_validity', 'note',
+        fields = ['name', 'process_number', 'version_stable', 'licenses_number', 'license', 'note',
                   'provider', 'category']
         widgets = {
             'name': forms.TextInput(
@@ -58,10 +58,10 @@ class SoftwareForm(forms.ModelForm):
                     'placeholder': Software._meta.get_field('licenses_number').default
                 }
             ),
-            'license_validity': forms.TextInput(
+            'license': forms.Select(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': Software._meta.get_field('license_validity').default
+                    'required': True
                 }
             ),
             'note': forms.Textarea(
@@ -119,6 +119,19 @@ class VulnerabilityForm(forms.ModelForm):
                     'class': 'form-control',
                     'multiple': 'multiple',
                     'required': True,
+                }
+            )
+        }
+
+
+class LicenseForm(forms.ModelForm):
+    class Meta:
+        model = License
+        fields = ['name', ]
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
                 }
             )
         }

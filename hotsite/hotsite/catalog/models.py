@@ -23,14 +23,25 @@ class Category(models.Model):
         return self.name
 
 
+class License(models.Model):
+    name = models.CharField(max_length=25, verbose_name='Nome')
+
+    class Meta:
+        verbose_name = 'Licença'
+        verbose_name_plural = 'Licenças'
+
+    def __str__(self):
+        return self.name
+
+
 class Software(models.Model):
     name = models.TextField(verbose_name='Nome')
     process_number = models.TextField(null=True, blank=True, verbose_name='Número do processo')
     version_stable = models.CharField(max_length=15, default='-', verbose_name='Versão estável')
     licenses_number = models.CharField(max_length=25, default='-', verbose_name='Número de licensas')
-    license_validity = models.CharField(max_length=25, default='Perpétua', verbose_name='Vigência da licença')
     note = models.TextField(verbose_name='Obserçaões')
 
+    license = models.ForeignKey(License, default=1, verbose_name=License._meta.verbose_name)
     provider = models.ForeignKey(Provider, verbose_name=Provider._meta.verbose_name)
     category = models.ForeignKey(Category, verbose_name=Category._meta.verbose_name)
 

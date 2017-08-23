@@ -20,4 +20,8 @@ urlpatterns = [
     url('^vulnerability/$', add_vulnerability, name='add_vulnerability'),
     url('^vulnerability/(?P<pk>\w+)/$', vulnerability, name='vulnerability'),
 
+    url('^licenses/$', licenses, name='licenses'),
+    url('^license/$', add_license, name='add_license'),
+    url('^license/(?P<pk>\w+)/$', license, name='license'),
+
 ]
