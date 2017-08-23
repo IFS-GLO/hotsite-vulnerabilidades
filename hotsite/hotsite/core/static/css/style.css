@@ -12595,3 +12595,7 @@ hr.transparent {
 .sidebar .nav .nav-item .nav-link.active i, .sidebar .nav .nav-item .navbar .active.dropdown-toggle i, .navbar .sidebar .nav .nav-item .active.dropdown-toggle i {
     color: #379457 !important
 }
+
+.sidebar .nav .nav-item .nav-link.active:hover i, .sidebar .nav .nav-item .navbar .active.dropdown-toggle:hover i, .navbar .sidebar .nav .nav-item .active.dropdown-toggle:hover i {
+    color: #FFF !important;
+}
