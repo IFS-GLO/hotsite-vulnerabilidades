@@ -1,11 +1,10 @@
+[![N|Solid](http://www.ifs.edu.br/comunicacao/images/Imagens/Marcas/IFS_puro/IFS---horizontal-01.png)](http://www.ifs.edu.br/)
 # Vulnerabilidades
 
-[![N|Solid](http://www.ifs.edu.br/comunicacao/images/Imagens/Marcas/IFS_puro/IFS---horizontal-01.png)](http://www.ifs.edu.br/)
-
-# Sobre
+## Sobre
 Desenvolvido em Django, o Hotsite exibite das vulnerabilidades, assim como suas informações, para a rede do Instituto Federal de Sergipe, auxiliando na comunicação e correções das inseguranças.
 
-# Dependências
+## Dependências
 ### Projeto
 | Programa | Versão | Sobre |
 | ----- | ----- | ----- |
@@ -37,7 +36,7 @@ Desenvolvido em Django, o Hotsite exibite das vulnerabilidades, assim como suas 
 | [tether]() | 1.4.0 | 
 | [toastr]() | 2.1.2 | 
 
-# Instalação
+## Instalação
 Clone o seguinte repositório
 
 ```
