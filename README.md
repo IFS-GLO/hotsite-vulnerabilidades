@@ -21,7 +21,7 @@ Desenvolvido em Django, o Hotsite exibite das vulnerabilidades, assim como suas 
 | ----- | ----- | ----- |
 | [Django](https://www.djangoproject.com/) | 1.11.4 | Framework
 | [Mysqlclient](https://pypi.python.org/pypi/mysqlclient/1.3.10) | 1.3.10 | Plugin de conexão com o banco de dados
-| [Gunicorn](http://gunicorn.org/) |  | Gateway de comunicação entre o servidor e a aplicação disponibilizada no servidor Web
+| [Gunicorn](http://gunicorn.org/) | 19.7.1 | Gateway de comunicação entre o servidor e a aplicação disponibilizada no servidor Web
 
 ### Frontend 
 | Programa | Versão | Sobre |
