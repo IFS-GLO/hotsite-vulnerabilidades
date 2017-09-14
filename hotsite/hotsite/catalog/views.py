@@ -239,6 +239,20 @@ def vulnerability(request, pk):
 
     instance = Vulnerability.objects.get(pk=pk)
 
+    if request.method == 'POST':
+        list_products = request.POST.getlist('products')  # Get the products array and insert into a list
+
+        request.POST._mutable = True  # For mutable the POST
+        request.POST['products'] = list_products
+        request.POST._mutable = False  # Return to no mutable
+
+        form = VulnerabilityForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, 'Atualizado com sucesso.')
+
     form = VulnerabilityForm(instance=instance)
 
     context = {
