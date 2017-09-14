@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Provider(models.Model):
@@ -66,9 +67,23 @@ class Vulnerability(models.Model):
     updated_at = models.DateField(auto_now=True, verbose_name='Atualizado em')
 
     products = models.ManyToManyField(Software, verbose_name=Software._meta.verbose_name_plural)
+    fixed = models.ManyToManyField(User, through='WhoFixed', verbose_name='Usuários')
 
     class Meta:
         verbose_name = 'Vulnerabilidade'
 
     def __str__(self):
         return self.name
+
+
+class WhoFixed(models.Model):
+    fixed_at = models.DateTimeField(auto_now_add=True, verbose_name='Corrigido em')
+
+    user = models.ForeignKey(User, verbose_name=User._meta.verbose_name)
+    vulnerability = models.ForeignKey(Vulnerability, verbose_name=Vulnerability._meta.verbose_name)
+
+    class Meta:
+        verbose_name = 'Quem corrigiu'
+
+    def __str__(self):
+        return self.user
