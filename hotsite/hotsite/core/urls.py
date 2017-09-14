@@ -4,6 +4,7 @@ from .views import *
 
 urlpatterns = [
     url('^$', index, name='index'),
+    url('^catalog/$', catalog, name='catalog'),
 
     url('^vulnerability/(?P<pk>\w+)/$', vulnerability, name="vulnerability"),
 

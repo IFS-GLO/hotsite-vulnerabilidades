@@ -22,6 +22,9 @@
                                 <th>Produtos</th>
                                 <th>Detectado</th>
                                 <th>Gravidade</th>
+                                {% if user.id and not user.is_superuser %}
+                                    <th>Corrigido</th>
+                                {% endif %}
                             </tr>
                             </thead>
                             <tfoot>
@@ -31,6 +34,9 @@
                                 <th>Produtos</th>
                                 <th>Detectado</th>
                                 <th>Gravidade</th>
+                                {% if user.id and not user.is_superuser %}
+                                    <th>Corrigido</th>
+                                {% endif %}
                             </tr>
                             </tfoot>
                             <tbody>
@@ -49,11 +55,49 @@
                                     </td>
                                     <td>{{ instance.detected_at|date:"d/m/Y" }}</td>
                                     <td>{{ instance.severity }}</td>
+
+                                    {% if user.id and not user.is_superuser %}
+                                        <td>
+                                            {% if instance.whofixed %}
+                                                <i class="fa fa-check text-success" data-toggle="tooltip"
+                                                   title="Correção aplicada!"></i>
+                                            {% else %}
+                                                <a href="#" data-toggle="modal" data-target="#confirmFix"
+                                                   id="{{ instance.id }}">
+                                                    <i class="fa fa-times text-danger" data-toggle="tooltip"
+                                                       title="Aplicar correção"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmFix" tabindex="-1" role="dialog" aria-labelledby="confirmFix"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmar correção?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <form action="." method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" id="vulnerability_id" name="vulnerability" />
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -70,7 +114,7 @@
             $('#informations').DataTable({
                 paging: false,
                 searching: true,
-                order: [[3, "desc" ]],
+                order: [[3, "desc"]],
                 language: {
                     processing: "Processando...",
                     search: "",
@@ -97,6 +141,11 @@
             });
             $('#informations_filter input').addClass("form-control");
             $('#informations_filter input').addClass("mr-sm-2");
+        });
+
+        $('#informations a').click(function(){
+            var vulnerability_id = $(this).attr('id');
+            $('#vulnerability_id').val(vulnerability_id);
         });
     </script>
 {% endblock %}

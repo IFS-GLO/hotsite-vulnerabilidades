@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -16,26 +17,43 @@
                             <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Produtos</th>
+                                <th>Fornecedor</th>
+                                <th>Categoria</th>
+                                <th>Versão Estável</th>
+                                <th>Nº Processo Aquisição</th>
+                                <th>Nº Licenças</th>
+                                <th>Vigência</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>Nome</th>
-                                <th>Produtos</th>
+                                <th>Fornecedor</th>
+                                <th>Categoria</th>
+                                <th>Versão Estável</th>
+                                <th>Nº Processo Aquisição</th>
+                                <th>Nº Licenças</th>
+                                <th>Vigência</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             {% for instance in instances %}
                                 <tr>
                                     <td>
+                                        <a href="{% url 'core:product' instance.id %}">
+                                            {{ instance }}
+                                        </a>
+                                    </td>
+                                    <td>
                                         <a href="{% url 'core:provider' instance.provider.id %}">
                                             {{ instance.provider.name }}
                                         </a>
                                     </td>
-                                    <td>
-                                        {{ instance.products|length }}
-                                    </td>
+                                    <td>{{ instance.category }}</td>
+                                    <td>{{ instace.version_stable }}</td>
+                                    <td>{{ instance.process_number }}</td>
+                                    <td>{{ instance.licenses_number }}</td>
+                                    <td>{{ instance.license }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

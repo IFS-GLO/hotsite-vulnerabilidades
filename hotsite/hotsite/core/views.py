@@ -1,17 +1,48 @@
 from django.db.models import Count
 from django.shortcuts import render
 
-from hotsite.catalog.models import Vulnerability, Provider, Software
+from hotsite.catalog.models import Vulnerability, Provider, Software, WhoFixed
 
 
 def index(request):
     template_name = 'hotsite/index.html'
     title = 'Vulnerabilidades'
 
+    if request.method == 'POST':
+        if request.user.id:
+            vulnerability_id = request.POST['vulnerability']
+
+            instance = Vulnerability.objects.get(pk=int(vulnerability_id))
+            WhoFixed(vulnerability=instance, user=request.user).save()
+
     instances = Vulnerability.objects.all()
+
+    if request.user.id:
+        for v in instances:
+            if WhoFixed.objects.filter(user=request.user).filter(vulnerability=v).exists():
+                fixed = True
+
+            else:
+                fixed = False
+
+            v.whofixed = fixed
 
     context = {
         'title': title,
+        'instances': instances
+    }
+
+    return render(request, template_name, context)
+
+
+def catalog(request):
+    template_name = 'hotsite/catalog.html'
+
+    instances = Software.objects.all()
+
+    context = {
+        'head_title': 'Catálogo de Software',
+        'title': 'Catálogo de Software',
         'instances': instances
     }
 
