@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from hotsite.catalog.models import Software, Provider, Vulnerability
 from hotsite.core.decorators import login_required
 
 
@@ -20,7 +21,10 @@ def login(request):
             if user.is_active:
                 auth_login(request, user)
 
-                return HttpResponseRedirect(reverse('panel:index'))
+                if user.is_staff:
+                    return HttpResponseRedirect(reverse('panel:index'))
+                else:
+                    return HttpResponseRedirect(reverse('core:index'))
 
             else:
                 messages.error(request, 'Conta inativa.')
@@ -41,7 +45,10 @@ def index(request):
     template_name = 'panel/index.html'
 
     context = {
-        'head_title': 'Painel'
+        'head_title': 'Painel',
+        'softwares': Software.objects.all().count(),
+        'providers': Provider.objects.all().count(),
+        'vulnerabilities': Vulnerability.objects.all().count(),
     }
 
     return render(request, template_name, context)
