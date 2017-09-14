@@ -42,7 +42,7 @@ Clone o repositório
 ```
 $ git clone https://unanimad@bitbucket.org/unanimad/ifs-vulnerabilidades.git
 ```
-Acesse o diretório do repositório e altere para a branch **dev**
+Acesse o diretório do repositório e altere para a branch **master**
 ```
 $ git pull origin dev
 ```
