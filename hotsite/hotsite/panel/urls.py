@@ -9,6 +9,8 @@ urlpatterns = [
 
     url('^catalog/', include('hotsite.catalog.urls', namespace='catalog')),
 
+    url('^posts/', include('hotsite.posts.urls', namespace='posts')),
+
     url('^$', index, name='index'),
 ]
 

@@ -1,0 +1,35 @@
+{% extends 'hotsite/base.html' %}
+{% load filters %}
+
+{% block content %}
+    <div class="row posts">
+        {% for instance in instances %}
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{% url 'core:post' instance.category.slug instance.slug %}">
+                        {% if instance.thumbnail %}
+                            <img class="card-img-top img-fluid" src="{{ instance.thumbnail.url }}" alt="">
+                        {% else %}
+                            <img class="card-img-top img-fluid" src="http://via.placeholder.com/300x225" alt="">
+                        {% endif %}
+                        <div class="card-block">
+                            <h4 class="card-title">{{ instance.title }}</h4>
+                            <p class="card-text">{{ instance.content|excerpt:50 }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ instance.updated_at }}</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        $(function () {
+            $('.menu-content').hide();
+        });
+    </script>
+{% endblock %}

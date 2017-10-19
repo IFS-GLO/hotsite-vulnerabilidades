@@ -1,0 +1,29 @@
+{% extends 'hotsite/base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center about">
+        <div class="col-md-2">
+            EM <a href="{% url 'core:category' instance.category.slug %}">{{ instance.category|upper }}</a>
+        </div>
+        <div class="col-md-2">
+            <i class="fa fa-clock-o" aria-hidden="true"></i> {{ instance.updated_at|date:'d M Y - H:i' }}
+        </div>
+    </div>
+
+    <div class="parallax" style="background-image: url('{{ instance.thumbnail.url }}')"></div>
+
+    <div class="row article">
+        <div class="col-md-8">
+            <p>{{ instance.content }}</p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        $(function () {
+            $('.menu-content').hide();
+        });
+    </script>
+{% endblock %}
