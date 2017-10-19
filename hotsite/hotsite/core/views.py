@@ -2,6 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render
 
 from hotsite.catalog.models import Vulnerability, Provider, Software, WhoFixed
+from hotsite.posts.models import Post
 
 
 def index(request):
@@ -17,6 +18,9 @@ def index(request):
 
     instances = Vulnerability.objects.all()
 
+    posts = Post.objects.all().order_by('-updated_at')[:8]
+
+    # To check if user has fixed the vulnerability
     if request.user.id:
         for v in instances:
             if WhoFixed.objects.filter(user=request.user).filter(vulnerability=v).exists():
@@ -29,7 +33,8 @@ def index(request):
 
     context = {
         'title': title,
-        'instances': instances
+        'instances': instances,
+        'posts': posts,
     }
 
     return render(request, template_name, context)

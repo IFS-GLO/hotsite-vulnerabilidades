@@ -1,5 +1,6 @@
 {% extends 'hotsite/base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block custom_css %}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
@@ -7,78 +8,100 @@
 
 {% block content %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    {{ vulnerabilities }}
-                    <div class="box-body">
-                        <table id="informations" class="table table-striped table-bordered" cellspacing="0"
-                               width="100%">
-                            <thead>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                {{ vulnerabilities }}
+                <div class="box-body">
+                    <table id="informations" class="table table-striped table-bordered" cellspacing="0"
+                           width="100%">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Produtos</th>
+                            <th>Detectado</th>
+                            <th>Gravidade</th>
+                            {% if user.id and not user.is_superuser %}
+                                <th>Corrigido</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Produtos</th>
+                            <th>Detectado</th>
+                            <th>Gravidade</th>
+                            {% if user.id and not user.is_superuser %}
+                                <th>Corrigido</th>
+                            {% endif %}
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for instance in instances %}
                             <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Produtos</th>
-                                <th>Detectado</th>
-                                <th>Gravidade</th>
-                                {% if user.id and not user.is_superuser %}
-                                    <th>Corrigido</th>
-                                {% endif %}
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Produtos</th>
-                                <th>Detectado</th>
-                                <th>Gravidade</th>
-                                {% if user.id and not user.is_superuser %}
-                                    <th>Corrigido</th>
-                                {% endif %}
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            {% for instance in instances %}
-                                <tr>
-                                    <td>{{ instance.id }}</td>
-                                    <td>
-                                        <a href="{% url 'core:vulnerability' instance.id %}">
-                                            {{ instance.name }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {% for product in instance.products.all %}
-                                            {{ product }},
-                                        {% endfor %}
-                                    </td>
-                                    <td>{{ instance.detected_at|date:"d/m/Y" }}</td>
-                                    <td>{{ instance.severity }}</td>
+                                <td>{{ instance.id }}</td>
+                                <td>
+                                    <a href="{% url 'core:vulnerability' instance.id %}">
+                                        {{ instance.name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {% for product in instance.products.all %}
+                                        {{ product }},
+                                    {% endfor %}
+                                </td>
+                                <td>{{ instance.detected_at|date:"d/m/Y" }}</td>
+                                <td>{{ instance.severity }}</td>
 
-                                    {% if user.id and not user.is_superuser %}
-                                        <td>
-                                            {% if instance.whofixed %}
-                                                <i class="fa fa-check text-success" data-toggle="tooltip"
-                                                   title="Correção aplicada!"></i>
-                                            {% else %}
-                                                <a href="#" data-toggle="modal" data-target="#confirmFix"
-                                                   id="{{ instance.id }}">
-                                                    <i class="fa fa-times text-danger" data-toggle="tooltip"
-                                                       title="Aplicar correção"></i>
-                                                </a>
-                                            {% endif %}
-                                        </td>
-                                    {% endif %}
+                                {% if user.id and not user.is_superuser %}
+                                    <td>
+                                        {% if instance.whofixed %}
+                                            <i class="fa fa-check text-success" data-toggle="tooltip"
+                                               title="Correção aplicada!"></i>
+                                        {% else %}
+                                            <a href="#" data-toggle="modal" data-target="#confirmFix"
+                                               id="{{ instance.id }}">
+                                                <i class="fa fa-times text-danger" data-toggle="tooltip"
+                                                   title="Aplicar correção"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                {% endif %}
 
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
+
+    <hr/>
+    <div class="row posts">
+        {% for post in posts %}
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{% url 'core:post' post.category.slug post.slug %}">
+                        {% if post.thumbnail %}
+                            <img class="card-img-top img-fluid" src="{{ post.thumbnail.url }}" alt="">
+                        {% else %}
+                            <img class="card-img-top img-fluid" src="http://via.placeholder.com/300x225" alt="">
+                        {% endif %}
+                        <div class="card-block">
+                            <h4 class="card-title">{{ post.title }}</h4>
+                            <p class="card-text">{{ post.content|excerpt:50 }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ post.updated_at }}</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
     <!-- Modal -->
@@ -95,7 +118,7 @@
                 <div class="modal-footer">
                     <form action="." method="POST">
                         {% csrf_token %}
-                        <input type="hidden" id="vulnerability_id" name="vulnerability" />
+                        <input type="hidden" id="vulnerability_id" name="vulnerability"/>
                         <button type="submit" class="btn btn-success">Confirmar</button>
                     </form>
                 </div>
@@ -143,7 +166,7 @@
             $('#informations_filter input').addClass("mr-sm-2");
         });
 
-        $('#informations a').click(function(){
+        $('#informations a').click(function () {
             var vulnerability_id = $(this).attr('id');
             $('#vulnerability_id').val(vulnerability_id);
         });

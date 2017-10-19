@@ -2,8 +2,29 @@
     font-family: 'Lato', sans-serif;
 }
 
+a, a:hover {
+    color: #017360;
+}
+
 body {
     background-color: #ecf0f1 !important;
+}
+
+@media (min-width: 1340px) {
+    .container {
+        width: 1320px;
+        max-width: 100%;
+    }
+}
+
+footer {
+    margin-top: 20px;
+    min-height: 50px;
+    padding: 0 1rem;
+    line-height: 50px;
+    color: #151b1e;
+    background: #f0f3f5;
+    border-top: 1px solid #c2cfd6;
 }
 
 .navbar {
