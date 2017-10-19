@@ -32,7 +32,7 @@ class CategoryForm(forms.ModelForm):
 class SoftwareForm(forms.ModelForm):
     class Meta:
         model = Software
-        fields = ['name', 'process_number', 'version_stable', 'licenses_number', 'license', 'note',
+        fields = ['name', 'process_number', 'version_stable', 'licenses_number', 'license', 'type', 'note',
                   'provider', 'category']
         widgets = {
             'name': forms.TextInput(
@@ -64,6 +64,12 @@ class SoftwareForm(forms.ModelForm):
                     'required': True
                 }
             ),
+            'type': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                    'required': True
+                }
+            ),
             'note': forms.Textarea(
                 attrs={
                     'class': 'form-control',
@@ -87,7 +93,7 @@ class SoftwareForm(forms.ModelForm):
 class VulnerabilityForm(forms.ModelForm):
     class Meta:
         model = Vulnerability
-        fields = ['name', 'description', 'solution', 'severity', 'detected_at', 'products']
+        fields = ['name', 'description', 'solution', 'severity', 'has_kaspersky', 'detected_at', 'products']
         widgets = {
             'name': forms.TextInput(
                 attrs={
@@ -107,6 +113,11 @@ class VulnerabilityForm(forms.ModelForm):
             'severity': forms.Select(
                 attrs={
                     'class': 'form-control',
+                }
+            ),
+            'has_kaspersky': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-control'
                 }
             ),
             'detected_at': forms.DateInput(

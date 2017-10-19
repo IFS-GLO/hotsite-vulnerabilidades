@@ -35,6 +35,17 @@ class License(models.Model):
         return self.name
 
 
+class TypeUse(models.Model):
+    name = models.CharField(max_length=25, verbose_name='Nome')
+
+    class Meta:
+        verbose_name = 'Tipo de uso'
+        verbose_name_plural = 'Tipo de uso'
+
+    def __str__(self):
+        return self.name
+
+
 class Software(models.Model):
     name = models.TextField(verbose_name='Nome')
     process_number = models.TextField(null=True, blank=True, verbose_name='Número do processo')
@@ -43,6 +54,7 @@ class Software(models.Model):
     note = models.TextField(verbose_name='Obserçaões')
 
     license = models.ForeignKey(License, default=1, verbose_name=License._meta.verbose_name)
+    type = models.ForeignKey(TypeUse, verbose_name=TypeUse._meta.verbose_name)
     provider = models.ForeignKey(Provider, verbose_name=Provider._meta.verbose_name)
     category = models.ForeignKey(Category, verbose_name=Category._meta.verbose_name)
 
@@ -61,6 +73,7 @@ class Vulnerability(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name='Descrição')
     solution = models.TextField(verbose_name='Solução')
     severity = models.CharField(max_length=7, choices=SEVERITY_CHOICES, verbose_name='Gravidade')
+    has_kaspersky = models.BooleanField(default=False, verbose_name='Está no catálogo da Kaspersky?')
 
     detected_at = models.DateField(verbose_name='Detectado em')
     created_at = models.DateField(auto_now_add=True, verbose_name='Criado em')
