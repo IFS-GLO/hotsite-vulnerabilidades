@@ -1,4 +1,6 @@
 hotsite/.idea/
+hotsite/hotsite/core/media/
+
 hotsite/hotsite/settings.py
 
 # Created by https://www.gitignore.io/api/node,python,pycharm,virtualenv
