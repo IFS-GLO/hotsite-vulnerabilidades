@@ -21,12 +21,14 @@ Desenvolvido em Django, o Hotsite exibite das vulnerabilidades, assim como suas 
 | ----- | ----- | ----- |
 | [Django](https://www.djangoproject.com/) | 1.11.4 | Framework
 | [Mysqlclient](https://pypi.python.org/pypi/mysqlclient/1.3.10) | 1.3.10 | Plugin de conexão com o banco de dados
+| [Pillow](https://pillow.readthedocs.io/en/4.2.x/) | 4.2.1 | Biblioteca de Imagens
 | [Gunicorn](http://gunicorn.org/) | 19.7.1 | Gateway de comunicação entre o servidor e a aplicação disponibilizada no servidor Web
 
 ### Frontend 
 | Programa | Versão | Sobre |
 | ----- | ----- | ----- |
 | [bootstrap](getbootstrap.com/) | 4.0.0-alpha.6 | Biblioteca do frontend
+| [popper.js](https://popper.js.org/) | 1.12.5 |  Biblioteca para gerenciar elementos Popper
 | [datatables.net](https://datatables.net) | 1.10.15 | Customização das tabelas e seus dados 
 | [datatables.net-bs](https://datatables.net) | 1.10.15 | Link do datatables com o bootstrap
 | [font-awesome](http://fontawesome.io/) | 4.7.0 | Icones em fontes
