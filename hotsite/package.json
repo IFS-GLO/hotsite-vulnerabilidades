@@ -4,7 +4,7 @@
   "description": "Vulnerabilidades das aplicações/servidores do Instituto Federal de Sergipe, apresentação os patchs para as devidas correções.",
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "^4.0.0-beta.2",
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^1.10.15",
     "font-awesome": "^4.7.0",
