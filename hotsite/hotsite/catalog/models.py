@@ -54,7 +54,7 @@ class Software(models.Model):
     note = models.TextField(verbose_name='Obserçaões')
 
     license = models.ForeignKey(License, default=1, verbose_name=License._meta.verbose_name)
-    type = models.ForeignKey(TypeUse, verbose_name=TypeUse._meta.verbose_name)
+    type = models.ForeignKey(TypeUse, null=True, blank=True, verbose_name=TypeUse._meta.verbose_name)
     provider = models.ForeignKey(Provider, verbose_name=Provider._meta.verbose_name)
     category = models.ForeignKey(Category, verbose_name=Category._meta.verbose_name)
 

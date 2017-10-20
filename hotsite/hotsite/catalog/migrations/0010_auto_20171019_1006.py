@@ -29,10 +29,4 @@ class Migration(migrations.Migration):
             name='has_kaspersky',
             field=models.BooleanField(default=False, verbose_name='Está no catálogo da Kaspersky?'),
         ),
-        migrations.AddField(
-            model_name='software',
-            name='type',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='catalog.TypeUse', verbose_name='Tipo de uso'),
-            preserve_default=False,
-        ),
     ]
