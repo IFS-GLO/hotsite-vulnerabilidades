@@ -27,14 +27,14 @@ Desenvolvido em Django, o Hotsite exibite das vulnerabilidades, assim como suas 
 ### Frontend 
 | Programa | Versão | Sobre |
 | ----- | ----- | ----- |
-| [bootstrap](getbootstrap.com/) | 4.0.0-alpha.6 | Biblioteca do frontend
+| [bootstrap](getbootstrap.com/) | 4.0.0-beta.2 | Biblioteca do frontend
 | [popper.js](https://popper.js.org/) | 1.12.5 |  Biblioteca para gerenciar elementos Popper
-| [datatables.net](https://datatables.net) | 1.10.15 | Customização das tabelas e seus dados 
-| [datatables.net-bs](https://datatables.net) | 1.10.15 | Link do datatables com o bootstrap
+| [datatables.net](https://datatables.net) | 1.10.16 | Customização das tabelas e seus dados
+| [datatables.net-bs](https://datatables.net) | 1.10.16 | Link do datatables com o bootstrap
 | [font-awesome](http://fontawesome.io/) | 4.7.0 | Icones em fontes
 | [jquery](https://jquery.com/) | 3.2.1 | Biblioteca JavaScript
 | [pace-js](github.hubspot.com/pace/docs/welcome/) | 1.0.2 | Progeresso do carregamento
-| [select2](https://select2.github.io/) | 4.0.3 | Customização do selectbox com suporte a busca
+| [select2](https://select2.github.io/) | 4.0.4 | Customização do selectbox com suporte a busca
 | [tether](tether.io/) | 1.4.0 | Posicionamento dos elementos na tela
 | [toastr](https://github.com/CodeSeven/toastr) | 2.1.2 | Notificações
 
