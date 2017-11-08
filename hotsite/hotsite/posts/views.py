@@ -22,8 +22,8 @@ def add_category(request):
     context = {
         'head_title': title,
         'title': title,
-        'form_size': '8',
         'form': form,
+        'form_size': '8',
 
     }
 
@@ -31,22 +31,51 @@ def add_category(request):
 
 
 def category(request, category_slug):
-    template_name = 'hotsite/category.html'
+    template_name = 'add.html'
 
-    category = Category.objects.get(slug=category_slug)
-    instances = Post.objects.filter(category=category).order_by('-created_at')
+    instance = Category.objects.get(slug=category_slug)
+    form = CategoryForm(instance=instance)
 
     context = {
-        'head_title': category.name,
-        'title': category.name,
-        'instances': instances
+        'head_title': instance.name,
+        'title': instance.name,
+        'form': form,
+        'form_size': '8',
+    }
+
+    return render(request, template_name, context)
+
+
+def categories(request):
+    template_name = 'list.html'
+
+    instances = Category.objects.all()
+
+    context = {
+        'head_title': 'Categorias',
+        'title': 'Categorias',
+        'instances': instances,
+        'add_url': 'panel:posts:add_category',
+        'edit_url': 'panel:posts:category'
     }
 
     return render(request, template_name, context)
 
 
 def posts(request):
-    pass
+    template_name = 'list_posts.html'
+
+    instances = Post.objects.all()
+
+    context = {
+        'head_title': 'Post',
+        'title': 'Post',
+        'instances': instances,
+        'add_url': 'panel:posts:add_post',
+        'edit_url': 'panel:posts:post'
+    }
+
+    return render(request, template_name, context)
 
 
 def add_post(request):
@@ -56,7 +85,7 @@ def add_post(request):
     form = PostForm(auto_id=False)
 
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES or None)
 
         if form.is_valid():
             form.save()
@@ -70,22 +99,25 @@ def add_post(request):
     context = {
         'head_title': title,
         'title': title,
-        'form_size': '8',
         'form': form,
+        'form_size': '8',
     }
 
     return render(request, template_name, context)
 
 
-def post(request, category_slug, post_slug):
-    template_name = 'hotsite/post.html'
+def post(request, post_slug):
+    template_name = 'add.html'
 
-    instance = Post.objects.filter(slug=post_slug).filter(category__slug=category_slug)[0]
+    instance = Post.objects.get(slug=post_slug)
+    form = PostForm(instance=instance)
 
     context = {
         'head_title': instance.title,
         'title': instance.title,
-        'instance': instance
+        'instance': instance,
+        'form': form,
+        'form_size': 8
     }
 
     return render(request, template_name, context)
