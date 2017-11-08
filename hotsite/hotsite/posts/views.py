@@ -46,6 +46,21 @@ def category(request, category_slug):
     return render(request, template_name, context)
 
 
+def view_category(request, category_slug):
+    template_name = 'hotsite/category.html'
+
+    instance = Category.objects.get(slug=category_slug)
+    instances = Post.objects.filter(category=instance)
+
+    context = {
+        'head_title': instance.name,
+        'title': instance.name,
+        'instances': instances,
+    }
+
+    return render(request, template_name, context)
+
+
 def categories(request):
     template_name = 'list.html'
 
@@ -63,16 +78,14 @@ def categories(request):
 
 
 def posts(request):
-    template_name = 'list_posts.html'
+    template_name = 'list_post.html'
 
     instances = Post.objects.all()
 
     context = {
         'head_title': 'Post',
         'title': 'Post',
-        'instances': instances,
-        'add_url': 'panel:posts:add_post',
-        'edit_url': 'panel:posts:post'
+        'instances': instances
     }
 
     return render(request, template_name, context)
@@ -85,7 +98,7 @@ def add_post(request):
     form = PostForm(auto_id=False)
 
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES or None)
+        form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -106,6 +119,20 @@ def add_post(request):
     return render(request, template_name, context)
 
 
+def view_post(request, category_slug, post_slug):
+    template_name = 'hotsite/post.html'
+
+    instance = Post.objects.filter(slug=post_slug).filter(category__slug=category_slug)[0]
+
+    context = {
+        'head_title': instance.title,
+        'title': instance.title,
+        'instance': instance
+    }
+
+    return render(request, template_name, context)
+
+
 def post(request, post_slug):
     template_name = 'add.html'
 
@@ -121,3 +148,4 @@ def post(request, post_slug):
     }
 
     return render(request, template_name, context)
+
