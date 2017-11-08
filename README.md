@@ -2,7 +2,7 @@
 # Vulnerabilidades
 
 ## Sobre
-Desenvolvido em Django, o Hotsite exibite das vulnerabilidades, assim como suas informações, para a rede do Instituto Federal de Sergipe, auxiliando na comunicação e correções das inseguranças.
+O HotSite fornece informações sobre as inseguranças descobertas, no âmbito de TI, que podem afetar as atividades exercidas bem como as informações trafegadas na rede. No HotSite as pessoas poderão verificar qual a falha foi detectadas e como solucionar, além de exibir também notícias sobre segurança da informação.
 
 ## Dependências
 ### Projeto
