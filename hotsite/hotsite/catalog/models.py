@@ -25,7 +25,7 @@ class Category(models.Model):
 
 
 class License(models.Model):
-    name = models.CharField(max_length=25, verbose_name='Nome')
+    name = models.CharField(max_length=50, verbose_name='Nome')
 
     class Meta:
         verbose_name = 'Licença'
