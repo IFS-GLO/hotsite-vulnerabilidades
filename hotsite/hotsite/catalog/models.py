@@ -50,8 +50,8 @@ class Software(models.Model):
     name = models.TextField(verbose_name='Nome')
     process_number = models.TextField(null=True, blank=True, verbose_name='Número do processo')
     version_stable = models.CharField(max_length=15, default='-', verbose_name='Versão estável')
-    licenses_number = models.CharField(max_length=25, default='-', verbose_name='Número de licensas')
-    note = models.TextField(verbose_name='Obserçaões')
+    licenses_number = models.CharField(max_length=25, default='-', verbose_name='Número de licenças')
+    note = models.TextField(verbose_name='Observações')
 
     license = models.ForeignKey(License, default=1, verbose_name=License._meta.verbose_name)
     type = models.ForeignKey(TypeUse, null=True, blank=True, verbose_name=TypeUse._meta.verbose_name)
