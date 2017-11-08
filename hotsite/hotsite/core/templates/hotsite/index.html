@@ -85,7 +85,7 @@
         {% for post in posts %}
             <div class="col-md-3">
                 <div class="card">
-                    <a href="{% url 'core:post' post.category.slug post.slug %}">
+                    <a href="{% url 'core:view_post' post.category.slug post.slug %}">
                         {% if post.thumbnail %}
                             <img class="card-img-top img-fluid" src="{{ post.thumbnail.url }}" alt="">
                         {% else %}

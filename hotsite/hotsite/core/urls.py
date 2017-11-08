@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from hotsite.panel.views import login
-from hotsite.posts.views import post, category
+from hotsite.posts.views import view_post, view_category
 from .views import *
 
 urlpatterns = [
@@ -18,6 +18,6 @@ urlpatterns = [
     url('^products/$', products, name="products"),
     url('^product/(?P<pk>\w+)/$', product, name="product"),
 
-    url('^category/(?P<category_slug>[\w-]+)/', category, name="category"),
-    url('^article/(?P<category_slug>[\w-]+)/(?P<post_slug>[\w-]+)/', post, name="post"),
+    url('^category/(?P<category_slug>[\w-]+)/', view_category, name="view_category"),
+    url('^article/(?P<category_slug>[\w-]+)/(?P<post_slug>[\w-]+)/', view_post, name="view_post"),
 ]

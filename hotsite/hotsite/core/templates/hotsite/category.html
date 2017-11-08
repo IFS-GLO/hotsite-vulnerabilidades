@@ -6,7 +6,7 @@
         {% for instance in instances %}
             <div class="col-md-3">
                 <div class="card">
-                    <a href="{% url 'core:post' instance.category.slug instance.slug %}">
+                    <a href="{% url 'core:view_post' instance.category.slug instance.slug %}">
                         {% if instance.thumbnail %}
                             <img class="card-img-top img-fluid" src="{{ instance.thumbnail.url }}" alt="">
                         {% else %}

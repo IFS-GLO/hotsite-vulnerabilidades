@@ -87,6 +87,19 @@
                         Softwares
                     </a>
                 </li>
+                <li class="nav-title">
+                    Notícias
+                </li>
+                <li class="nav-item open">
+                    <a class="nav-link" href="{% url 'panel:posts:categories' %}"><i class="fa fa-thumb-tack"></i>
+                        Categorias
+                    </a>
+                </li>
+                <li class="nav-item open">
+                    <a class="nav-link" href="{% url 'panel:posts:posts' %}"><i class="fa fa-newspaper-o"></i>
+                        Posts
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -113,15 +126,19 @@
 </footer>
 
 <!-- Bootstrap and necessary plugins -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-<script src="{% static 'tether/dist/js/tether.min.js' %}"></script>
 <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'popper.js/dist/umd/popper.min.js' %}"></script>
 <script src="{% static 'pace-js/pace.min.js' %}"></script>
 <script src="{% static 'toastr/build/toastr.min.js' %}"></script>
 <script src="{% static 'js/app.js' %}"></script>
 
 <script>
     $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
         {% if messages %}
             {% for message in messages %}
                 {% if message.tags == 'success' %}
