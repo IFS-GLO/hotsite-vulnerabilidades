@@ -23,6 +23,7 @@
                                 <th>Nº Processo Aquisição</th>
                                 <th>Nº Licenças</th>
                                 <th>Vigência</th>
+                                <th>Observação</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -34,6 +35,7 @@
                                 <th>Nº Processo Aquisição</th>
                                 <th>Nº Licenças</th>
                                 <th>Vigência</th>
+                                <th>Observação</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -54,6 +56,9 @@
                                     <td>{{ instance.process_number }}</td>
                                     <td>{{ instance.licenses_number }}</td>
                                     <td>{{ instance.license }}</td>
+                                    <td class="text-center" data-toggle="tooltip" data-placement="top" title="{{ instance.note }}" >
+                                        <i class="fa fa-info-circle"></i>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -79,7 +84,7 @@
         $(function () {
 
             $('#informations').DataTable({
-                paging: false,
+                paging: true,
                 searching: true,
                 language: {
                     processing: "Processando...",
