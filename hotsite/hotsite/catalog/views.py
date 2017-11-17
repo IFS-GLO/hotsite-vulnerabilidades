@@ -28,9 +28,14 @@ def add_provider(request):
         form = ProviderForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            name = form.cleaned_data['name']
 
-            messages.success(request, 'Cadastrado com sucesso.')
+            if Provider.objects.filter(name=name).exists():
+                messages.error(request, 'Já existe.')
+
+            else:
+                form.save()
+                messages.success(request, 'Cadastrado com sucesso.')
 
     context = {
         'head_title': 'Novo Fornecedor',
