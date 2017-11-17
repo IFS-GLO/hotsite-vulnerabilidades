@@ -24,7 +24,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30, verbose_name='Título')
     slug = models.CharField(max_length=30)
     content = models.TextField(verbose_name='Conteúdo')
-    thumbnail = models.ImageField(upload_to=MEDIA_ROOT, null=True, blank=True, verbose_name='Imagem Destacada')
+    thumbnail = models.ImageField(upload_to='posts', null=True, blank=True, verbose_name='Imagem Destacada')
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')

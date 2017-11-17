@@ -78,14 +78,15 @@ def categories(request):
 
 
 def posts(request):
-    template_name = 'list_post.html'
+    template_name = 'list_posts.html'
 
     instances = Post.objects.all()
 
     context = {
         'head_title': 'Post',
         'title': 'Post',
-        'instances': instances
+        'instances': instances,
+        'edit_url': 'panel:posts:post'
     }
 
     return render(request, template_name, context)
