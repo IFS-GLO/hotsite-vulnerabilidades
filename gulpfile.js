@@ -14,8 +14,7 @@ var jsFiles = [
   path.node + '/jquery/dist/jquery.min.js',
   path.node + '/popper.js/dist/umd/popper.min.js',
   path.node + '/bootstrap/dist/js/bootstrap.min.js',
-  path.node + '/datatables.net/js/jquery.dataTables.js',
-  path.node + '/datatables.net-bs/js/dataTables.bootstrap.js',
+  path.node + '/datatables.net-bs4/js/dataTables.bootstrap4.js',
   path.node + '/pace-js/pace.min.js',
   path.node + '/select2/dist/js/select2.min.js',
   path.node + '/toastr/build/toastr.min.js',
@@ -23,10 +22,10 @@ var jsFiles = [
 
 // styles path
 var cssFiles = [
-  path.node + '/bootstrap/dist/css/bootstrap.min.css',
   path.node + '/tether/dist/css/tether.min.css',
+  path.node + '/bootstrap/dist/css/bootstrap.min.css',
   path.node + '/font-awesome/css/font-awesome.min.css',
-  path.node + '/datatables.net-bs/css/dataTables.bootstrap.css',
+  path.node + '/datatables.net-bs4/css/dataTables.bootstrap4.css',
   path.node + '/select2/dist/css/select2.min.css',
   path.node + '/toastr/build/toastr.min.css',
 ]
