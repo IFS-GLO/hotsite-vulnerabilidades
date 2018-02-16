@@ -1,7 +1,11 @@
 hotsite/.idea/
 hotsite/hotsite/core/media/
-
 hotsite/hotsite/settings.py
+
+# Static files
+hotsite/hotsite/core/static/css/all.min.css
+hotsite/hotsite/core/static/js/all.min.js
+hotsite/hotsite/core/static/fonts/
 
 # Created by https://www.gitignore.io/api/node,python,pycharm,virtualenv
 

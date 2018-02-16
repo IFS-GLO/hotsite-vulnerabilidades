@@ -50,14 +50,13 @@
 {% endblock %}
 
 {% block custom_js %}
-    <script src="{% static 'datatables.net/js/jquery.dataTables.js' %}"></script>
     <script>
         $(function () {
 
             $('[data-toggle="tooltip"]').tooltip();
 
             $('#data_table').DataTable({
-                paging: false,
+                paging: true,
                 searching: true,
                 language: {
                     processing: "Processando...",

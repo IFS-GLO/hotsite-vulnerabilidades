@@ -1,10 +1,6 @@
 {% extends 'hotsite/base.html' %}
 {% load static %}
 
-{% block custom_css %}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
-{% endblock %}
-
 {% block content %}
 
     <div class="container-fluid">
@@ -23,6 +19,7 @@
                                 <th>Nº Processo Aquisição</th>
                                 <th>Nº Licenças</th>
                                 <th>Vigência</th>
+                                <th>Observação</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -34,6 +31,7 @@
                                 <th>Nº Processo Aquisição</th>
                                 <th>Nº Licenças</th>
                                 <th>Vigência</th>
+                                <th>Observação</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -54,6 +52,9 @@
                                     <td>{{ instance.process_number }}</td>
                                     <td>{{ instance.licenses_number }}</td>
                                     <td>{{ instance.license }}</td>
+                                    <td class="text-center" data-toggle="tooltip" data-placement="top" title="{{ instance.note }}" >
+                                        <i class="fa fa-info-circle"></i>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -67,8 +68,6 @@
 {% endblock %}
 
 {% block custom_js %}
-    <script src="{% static 'datatables.net/js/jquery.dataTables.js' %}"></script>
-
     <script>
         $(function () {
             $('.menu-content').hide();
@@ -79,7 +78,7 @@
         $(function () {
 
             $('#informations').DataTable({
-                paging: false,
+                paging: true,
                 searching: true,
                 language: {
                     processing: "Processando...",
