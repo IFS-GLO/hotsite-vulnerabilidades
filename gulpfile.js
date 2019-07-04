@@ -14,6 +14,7 @@ var jsFiles = [
   path.node + '/jquery/dist/jquery.min.js',
   path.node + '/popper.js/dist/umd/popper.min.js',
   path.node + '/bootstrap/dist/js/bootstrap.min.js',
+  path.node + '/datatables.net/js/jquery.dataTables.js',
   path.node + '/datatables.net-bs4/js/dataTables.bootstrap4.js',
   path.node + '/pace-js/pace.min.js',
   path.node + '/select2/dist/js/select2.min.js',

@@ -2,6 +2,9 @@ from django.conf.urls import url
 
 from .views import *
 
+
+app_name = 'catalog'
+
 urlpatterns = [
 
     url('^providers/$', providers, name='providers'),

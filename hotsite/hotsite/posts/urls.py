@@ -2,6 +2,9 @@ from django.conf.urls import url
 
 from .views import *
 
+
+app_name = 'posts'
+
 urlpatterns = [
     url('^categories/$', categories, name='categories'),
     url('^category/add/$', add_category, name='add_category'),
