@@ -8,11 +8,12 @@ from .views import *
 app_name = 'core'
 
 urlpatterns = [
-    url('^$', index, name='index'),
+    url('^$', catalog, name='index'),
     url('^login/$', login, name='login'),
 
     url('^catalog/$', catalog, name='catalog'),
 
+    url('^vulnerability/$', index, name='vulnerabilities'),
     url('^vulnerability/(?P<pk>\w+)/$', vulnerability, name="vulnerability"),
 
     url('^providers/$', providers, name="providers"),
