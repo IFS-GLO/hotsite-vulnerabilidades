@@ -2,6 +2,9 @@ from django.conf.urls import url, include
 
 from .views import *
 
+
+app_name = 'panel'
+
 urlpatterns = [
 
     url('^login/$', login, name='login'),

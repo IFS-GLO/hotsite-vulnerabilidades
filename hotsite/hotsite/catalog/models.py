@@ -53,10 +53,13 @@ class Software(models.Model):
     licenses_number = models.CharField(max_length=25, default='-', verbose_name='Número de licenças')
     note = models.TextField(verbose_name='Observações')
 
-    license = models.ForeignKey(License, default=1, verbose_name=License._meta.verbose_name)
-    type = models.ForeignKey(TypeUse, null=True, blank=True, verbose_name=TypeUse._meta.verbose_name)
-    provider = models.ForeignKey(Provider, verbose_name=Provider._meta.verbose_name)
-    category = models.ForeignKey(Category, verbose_name=Category._meta.verbose_name)
+    created_at = models.DateField(auto_now_add=True, verbose_name='Criado em')
+    updated_at = models.DateField(auto_now=True, verbose_name='Atualizado em')
+
+    license = models.ForeignKey(License, default=1, on_delete=models.CASCADE, verbose_name=License._meta.verbose_name)
+    type = models.ForeignKey(TypeUse, null=True, blank=True, on_delete=models.CASCADE, verbose_name=TypeUse._meta.verbose_name)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, verbose_name=Provider._meta.verbose_name)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=Category._meta.verbose_name)
 
     def __str__(self):
         return self.name
@@ -92,8 +95,8 @@ class Vulnerability(models.Model):
 class WhoFixed(models.Model):
     fixed_at = models.DateTimeField(auto_now_add=True, verbose_name='Corrigido em')
 
-    user = models.ForeignKey(User, verbose_name=User._meta.verbose_name)
-    vulnerability = models.ForeignKey(Vulnerability, verbose_name=Vulnerability._meta.verbose_name)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=User._meta.verbose_name)
+    vulnerability = models.ForeignKey(Vulnerability, on_delete=models.CASCADE, verbose_name=Vulnerability._meta.verbose_name)
 
     class Meta:
         verbose_name = 'Quem corrigiu'

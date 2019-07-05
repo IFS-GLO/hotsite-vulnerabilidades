@@ -29,7 +29,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
 
-    category = models.ForeignKey(Category, verbose_name=Category._meta.verbose_name)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=Category._meta.verbose_name)
 
     def __str__(self):
         return self.title

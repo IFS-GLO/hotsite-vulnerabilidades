@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import *
 
@@ -13,7 +13,8 @@ def providers(request):
         'head_title': 'Fornecedores',
         'instances': instances,
         'add_url': 'panel:catalog:add_provider',
-        'edit_url': 'panel:catalog:provider'
+        'edit_url': 'panel:catalog:provider',
+        'del_url': 'panel:catalog:del_provider'
     }
 
     return render(request, template_name, context)
@@ -70,6 +71,16 @@ def provider(request, pk):
     return render(request, template_name, context)
 
 
+def del_provider(request, pk):
+    if Provider.objects.filter(pk=pk).exists():
+        Provider.objects.filter(pk=pk).delete()
+        messages.success(request, 'Fornecedor removido com sucesso!')
+    else:
+        messages.error(request, 'Fornecedor não encontrado.')
+
+    return redirect('panel:catalog:providers')
+
+
 def categories(request):
     template_name = 'panel/list.html'
 
@@ -79,7 +90,8 @@ def categories(request):
         'head_title': 'Categorias',
         'instances': instances,
         'add_url': 'panel:catalog:add_category',
-        'edit_url': 'panel:catalog:category'
+        'edit_url': 'panel:catalog:category',
+        'del_url': 'panel:catalog:del_category'
     }
 
     return render(request, template_name, context)
@@ -131,6 +143,16 @@ def category(request, pk):
     return render(request, template_name, context)
 
 
+def del_category(request, pk):
+    if Category.objects.filter(pk=pk).exists():
+        Category.objects.filter(pk=pk).delete()
+        messages.success(request, 'Categoria removida com sucesso!')
+    else:
+        messages.error(request, 'Categoria não encontrada.')
+
+    return redirect('panel:catalog:categories')
+
+
 def softwares(request):
     template_name = 'panel/list.html'
 
@@ -140,7 +162,8 @@ def softwares(request):
         'head_title': 'Softwares',
         'instances': instances,
         'add_url': 'panel:catalog:add_software',
-        'edit_url': 'panel:catalog:software'
+        'edit_url': 'panel:catalog:software',
+        'del_url': 'panel:catalog:del_software'
     }
 
     return render(request, template_name, context)
@@ -190,6 +213,16 @@ def software(request, pk):
     }
 
     return render(request, template_name, context)
+
+
+def del_software(request, pk):
+    if Software.objects.filter(pk=pk).exists():
+        Software.objects.filter(pk=pk).delete()
+        messages.success(request, 'Software removido com sucesso!')
+    else:
+        messages.error(request, 'Software não encontrado.')
+
+    return redirect('panel:catalog:softwares')
 
 
 def vulnerabilities(request):
@@ -269,6 +302,16 @@ def vulnerability(request, pk):
     return render(request, template_name, context)
 
 
+def del_vulnerability(request, pk):
+    if Vulnerability.objects.filter(pk=pk).exists():
+        Vulnerability.objects.filter(pk=pk).delete()
+        messages.success(request, 'Vulnerabilidade removida com sucesso!')
+    else:
+        messages.error(request, 'Vulnerabilidade não encontrada.')
+
+    return redirect('panel:catalog:vulnerabilities')
+
+
 def licenses(request):
     template_name = 'panel/list.html'
 
@@ -278,7 +321,8 @@ def licenses(request):
         'head_title': 'Licenças',
         'instances': instances,
         'add_url': 'panel:catalog:add_license',
-        'edit_url': 'panel:catalog:license'
+        'edit_url': 'panel:catalog:license',
+        'del_url': 'panel:catalog:del_license'
     }
 
     return render(request, template_name, context)
@@ -328,3 +372,13 @@ def license(request, pk):
     }
 
     return render(request, template_name, context)
+
+
+def del_license(request, pk):
+    if License.objects.filter(pk=pk).exists():
+        License.objects.filter(pk=pk).delete()
+        messages.success(request, 'Licença removida com sucesso!')
+    else:
+        messages.error(request, 'Licença não encontrada.')
+
+    return redirect('panel:catalog:licenses')
