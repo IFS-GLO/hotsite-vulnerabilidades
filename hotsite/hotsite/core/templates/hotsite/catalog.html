@@ -3,112 +3,112 @@
 
 {% block content %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-body">
-                        <table id="informations" class="table table-striped table-bordered" cellspacing="0"
-                               width="100%">
-                            <thead>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body">
+                    <table id="informations" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
                             <tr>
                                 <th>Nome</th>
                                 <th>Fornecedor</th>
                                 <th>Categoria</th>
-				<th>Uso</th>
+                                <th>Uso</th>
                                 <th>Versão Estável</th>
                                 <th>Nº Processo Aquisição</th>
                                 <th>Nº Licenças</th>
                                 <th>Vigência</th>
                                 <th>Observação</th>
                             </tr>
-                            </thead>
-                            <tfoot>
+                        </thead>
+                        <tfoot>
                             <tr>
                                 <th>Nome</th>
                                 <th>Fornecedor</th>
                                 <th>Categoria</th>
-				<th>Uso</th>
+                                <th>Uso</th>
                                 <th>Versão Estável</th>
                                 <th>Nº Processo Aquisição</th>
                                 <th>Nº Licenças</th>
                                 <th>Vigência</th>
                                 <th>Observação</th>
                             </tr>
-                            </tfoot>
-                            <tbody>
+                        </tfoot>
+                        <tbody>
                             {% for instance in instances %}
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'core:product' instance.id %}">
-                                            {{ instance }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'core:provider' instance.provider.id %}">
-                                            {{ instance.provider.name }}
-                                        </a>
-                                    </td>
-                                    <td>{{ instance.category }}</td>
-				    <td>{{ instance.type }}</td>
-                                    <td>{{ instace.version_stable }}</td>
-                                    <td>{{ instance.process_number }}</td>
-                                    <td>{{ instance.licenses_number }}</td>
-                                    <td>{{ instance.license }}</td>
-                                    <td class="text-center" data-toggle="tooltip" data-placement="top" title="{{ instance.note }}" >
-                                        <i class="fa fa-info-circle"></i>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <a href="{% url 'core:product' instance.id %}">
+                                        {{ instance }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'core:provider' instance.provider.id %}">
+                                        {{ instance.provider.name }}
+                                    </a>
+                                </td>
+                                <td>{{ instance.category }}</td>
+                                <td>{{ instance.type }}</td>
+                                <td>{{ instace.version_stable }}</td>
+                                <td>{{ instance.process_number }}</td>
+                                <td>{{ instance.licenses_number }}</td>
+                                <td>{{ instance.license }}</td>
+                                <td class="text-center" data-toggle="tooltip" data-placement="top"
+                                    title="{{ instance.note }}">
+                                    <i class="fa fa-info-circle"></i>
+                                </td>
+                            </tr>
                             {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
 
 {% block custom_js %}
-    <script>
-        $(function () {
-            $('.menu-content').hide();
-        });
-    </script>
+<script>
+    $(function () {
+        $('.menu-content').hide();
+    });
+</script>
 
-    <script>
-        $(function () {
+<script>
+    $(function () {
 
-            $('#informations').DataTable({
-                paging: true,
-                searching: true,
-                language: {
-                    processing: "Processando...",
-                    search: "",
-                    searchPlaceholder: "Procurar",
-                    lengthMenu: "_MENU_ resultados por página",
-                    info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    infoEmpty: "Mostrando 0 até 0 de 0 registros",
-                    infoFiltered: "(Filtrados de _MAX_ registros)",
-                    infoPostFix: "",
-                    loadingRecords: "Carregando...",
-                    zeroRecords: "Nenhum registro encontrado",
-                    emptyTable: "Nenhum registro encontrado",
-                    paginate: {
-                        first: "Próximo",
-                        previous: "Anterior",
-                        next: "Próximo",
-                        last: "Último"
-                    },
-                    aria: {
-                        sortAscending: ": Ordenar colunas de forma ascendente",
-                        sortDescending: ": Ordenar colunas de forma descendente"
-                    }
+        $('#informations').DataTable({
+            paging: true,
+            searching: true,
+            language: {
+                processing: "Processando...",
+                search: "",
+                searchPlaceholder: "Procurar",
+                lengthMenu: "_MENU_ resultados por página",
+                info: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                infoEmpty: "Mostrando 0 até 0 de 0 registros",
+                infoFiltered: "(Filtrados de _MAX_ registros)",
+                infoPostFix: "",
+                loadingRecords: "Carregando...",
+                zeroRecords: "Nenhum registro encontrado",
+                emptyTable: "Nenhum registro encontrado",
+                paginate: {
+                    first: "Próximo",
+                    previous: "Anterior",
+                    next: "Próximo",
+                    last: "Último"
+                },
+                aria: {
+                    sortAscending: ": Ordenar colunas de forma ascendente",
+                    sortDescending: ": Ordenar colunas de forma descendente"
                 }
-            });
-            $('#informations_filter input').addClass("form-control");
-            $('#informations_filter input').addClass("mr-sm-2");
+            }
         });
-    </script>
+        $('#informations_filter input').addClass("form-control");
+        $('#informations_filter input').addClass("mr-sm-2");
+    });
+</script>
 {% endblock %}
