@@ -85,7 +85,8 @@ def provider(request, pk):
     template_name = 'hotsite/provider.html'
 
     instance = Provider.objects.get(pk=pk)
-    instances = Software.objects.filter(provider=instance).annotate(vulnerabilities=Count('vulnerability'))
+    instances = Software.objects.filter(provider=instance).annotate(
+        vulnerabilities=Count('vulnerability'))
 
     context = {
         'head_title': instance.name,
@@ -101,7 +102,8 @@ def products(request):
     template_name = 'hotsite/products.html'
     title = 'Produtos'
 
-    instances = Software.objects.all().annotate(vulnerabilities=Count('vulnerability'))
+    instances = Software.objects.all().annotate(
+        vulnerabilities=Count('vulnerability'))
 
     context = {
         'title': title,
@@ -138,3 +140,9 @@ def vulnerability(request, pk):
     }
 
     return render(request, template_name, context)
+
+
+def mail_preview(request):
+    template_name = 'panel/mail.html'
+
+    return render(request, template_name)

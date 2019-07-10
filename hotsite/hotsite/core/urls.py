@@ -24,4 +24,6 @@ urlpatterns = [
 
     url('^category/(?P<category_slug>[\w-]+)/', view_category, name="view_category"),
     url('^article/(?P<category_slug>[\w-]+)/(?P<post_slug>[\w-]+)/', view_post, name="view_post"),
+
+    url('^mail/preview/', mail_preview, name='mail_preview'),
 ]
