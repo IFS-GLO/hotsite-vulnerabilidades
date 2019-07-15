@@ -234,7 +234,8 @@ def vulnerabilities(request):
         'head_title': 'Vulnerabilidades',
         'instances': instances,
         'add_url': 'panel:catalog:add_vulnerability',
-        'edit_url': 'panel:catalog:vulnerability'
+        'edit_url': 'panel:catalog:vulnerability',
+        'del_url': 'panel:catalog:del_vulnerability'
     }
 
     return render(request, template_name, context)
