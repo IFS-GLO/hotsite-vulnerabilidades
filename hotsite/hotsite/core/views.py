@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django.db.models import Count
 from django.shortcuts import render
 
@@ -143,6 +145,45 @@ def vulnerability(request, pk):
 
 
 def mail_preview(request):
+    instances = []
+    provider_pos = 0
     template_name = 'panel/mail.html'
 
-    return render(request, template_name)
+    today_str = date.today().strftime('%d/%m/%Y')
+    yesterday = date.today() - timedelta(days=1)
+
+    softwares_updated = Software.get_updated(date=yesterday)
+
+    for instance in softwares_updated:
+        if len(instances) == 0:
+            instances.append({
+                'provider': instance.provider.name,
+                'softwares': []
+            })
+
+            last_provider_id = instance.provider.id
+
+        if last_provider_id == instance.provider.id:
+            instances[provider_pos]['softwares'].append({
+                'name': instance.name,
+                'version_stable': instance.version_stable
+            })
+
+        else:
+            instances.append({
+                'provider': instance.provider.name,
+                'softwares': [{
+                    'name': instance.name,
+                    'version_stable': instance.version_stable
+                }, ]
+            })
+
+            provider_pos += 1
+            last_provider_id = instance.provider.id
+
+    context = {
+        'instances': instances,
+        'date': today_str
+    }
+
+    return render(request, template_name, context)

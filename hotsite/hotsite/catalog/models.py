@@ -71,6 +71,9 @@ class Software(models.Model):
     def __str__(self):
         return self.name
 
+    def get_updated(date):
+        return Software.objects.filter(updated_at=date).order_by('provider_id')
+
 
 class Vulnerability(models.Model):
     SEVERITY_CHOICES = (
